@@ -12,6 +12,7 @@ const userEmailSpan = document.getElementById("user-email");
 const adminSection = document.getElementById("admin-section");
 const deliveryList = document.getElementById("delivery-list");
 const studentEmailSelect = document.getElementById("studentEmailSelect");
+const dashboardHeader = document.getElementById("dashboard-header");
 
 // Admin credentials
 const ADMIN_EMAIL = "gatekeeper@hostel.test";
@@ -55,6 +56,7 @@ window.login = async function() {
       loginBox.style.display = "none";
       dashboard.style.display = "block";
       adminSection.style.display = "block";
+      dashboardHeader.className = "admin-header";
       await loadStudents();
       await loadDeliveries();
     } else {
@@ -64,6 +66,7 @@ window.login = async function() {
       loginBox.style.display = "none";
       dashboard.style.display = "block";
       adminSection.style.display = "none";
+      dashboardHeader.className = "student-header";
       await loadStudentDeliveries(email);
     }
   } catch (error) {
@@ -139,7 +142,7 @@ async function loadDeliveries(){
     // Add delete button for admin
     const delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
-    delBtn.style.marginLeft = "10px";
+    delBtn.className = "delete-btn";
     delBtn.onclick = () => deleteDelivery(docSnap.id);
     li.appendChild(delBtn);
 
@@ -160,7 +163,7 @@ async function loadStudentDeliveries(studentEmail){
       // Student can delete their own deliveries
       const delBtn = document.createElement("button");
       delBtn.textContent = "Delete";
-      delBtn.style.marginLeft = "10px";
+      delBtn.className = "delete-btn";
       delBtn.onclick = () => deleteDelivery(docSnap.id);
       li.appendChild(delBtn);
 
@@ -180,4 +183,18 @@ async function loadStudents(){
     studentEmailSelect.appendChild(option);
   });
 }
+
+// Dark/Light mode toggle
+const modeToggle = document.getElementById("mode-toggle");
+modeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  if(document.body.classList.contains("dark-mode")){
+    modeToggle.textContent = "☀️ Light Mode";
+  } else {
+    modeToggle.textContent = "🌙 Dark Mode";
+  }
+});
+
+
 
