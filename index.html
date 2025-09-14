@@ -6,6 +6,7 @@
   <title>Student Delivery Tracker</title>
   <link rel="stylesheet" href="style.css">
 
+  <!-- Firebase SDKs -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -30,6 +31,9 @@
 </head>
 <body>
   <div class="container">
+    <!-- Dark/Light Mode Toggle -->
+    <button id="mode-toggle">🌙 Dark Mode</button>
+
     <h1>📦 Student Delivery Tracker</h1>
 
     <!-- Login / Signup -->
@@ -43,7 +47,7 @@
 
     <!-- Dashboard -->
     <div id="dashboard" style="display: none;">
-      <h2>Welcome <span id="user-email"></span></h2>
+      <h2 id="dashboard-header">Welcome <span id="user-email"></span></h2>
 
       <!-- Admin section -->
       <div id="admin-section" style="display: none;">
@@ -66,6 +70,8 @@
   <script src="app.js" type="module"></script>
 </body>
 </html>
+
+
 
 
 
