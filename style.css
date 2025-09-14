@@ -1,19 +1,60 @@
+/* Default Light Mode */
+:root {
+  --bg-color: #f7f9fc;
+  --container-bg: #ffffff;
+  --text-color: #333;
+  --button-bg: #4CAF50;
+  --button-hover: #45a049;
+  --delete-bg: #e74c3c;
+  --delete-hover: #c0392b;
+  --shadow: rgba(0, 0, 0, 0.1);
+
+  --admin-color: #2ecc71;
+  --student-color: #3498db;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --bg-color: #1e1e2f;
+  --container-bg: #2a2a40;
+  --text-color: #f5f5f5;
+  --button-bg: #6c63ff;
+  --button-hover: #5a52e0;
+  --delete-bg: #ff6b6b;
+  --delete-hover: #e63946;
+  --shadow: rgba(255, 255, 255, 0.1);
+
+  --admin-color: #27ae60;
+  --student-color: #2980b9;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #f7f9fc;
+  background: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  transition: background 0.3s ease;
 }
 
 .container {
-  background: white;
+  background: var(--container-bg);
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px var(--shadow);
   text-align: center;
-  width: 300px;
+  width: 340px;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  margin-bottom: 12px;
 }
 
 input, select {
@@ -21,7 +62,14 @@ input, select {
   margin: 8px 0;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: var(--button-bg);
+  box-shadow: 0 0 5px var(--button-bg);
 }
 
 button {
@@ -29,14 +77,28 @@ button {
   padding: 10px;
   margin: 8px 0;
   border: none;
-  border-radius: 6px;
-  background: #4CAF50;
+  border-radius: 8px;
+  background: var(--button-bg);
   color: white;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #45a049;
+  background: var(--button-hover);
+}
+
+.delete-btn {
+  background: var(--delete-bg);
+  margin-left: 10px;
+  width: auto;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: var(--delete-hover);
 }
 
 ul {
@@ -44,4 +106,43 @@ ul {
   padding-left: 0;
   max-height: 150px;
   overflow-y: auto;
+  margin-top: 10px;
+  text-align: left;
 }
+
+/* Scrollbar styling */
+ul::-webkit-scrollbar {
+  width: 6px;
+}
+ul::-webkit-scrollbar-thumb {
+  background: var(--button-bg);
+  border-radius: 4px;
+}
+
+/* Toggle Switch */
+#mode-toggle {
+  background: #444;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+/* Dashboard header */
+#dashboard h2 {
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.admin-header {
+  background: var(--admin-color);
+}
+
+.student-header {
+  background: var(--student-color);
+}
+
+
