@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Delivery Tracker</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQn7seYk_5KGkRP9EoBjm6yMUn_gUWONA",
+      authDomain: "hostel-delivery-prototype.firebaseapp.com",
+      projectId: "hostel-delivery-prototype",
+      storageBucket: "hostel-delivery-prototype.appspot.com",
+      messagingSenderId: "339038246791",
+      appId: "1:339038246791:web:c42a4b2c75adfed75de522",
+      measurementId: "G-FL41HGRLFS"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.auth = getAuth(app);
+    window.db = getFirestore(app);
+    window.analytics = getAnalytics(app);
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Student Delivery Tracker</h1>
+
+    <!-- Login / Signup -->
+    <div id="login-box">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Enter Email">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="login()">Login</button>
+      <button onclick="signup()">Sign Up (Students Only)</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" style="display: none;">
+      <h2>Welcome <span id="user-email"></span></h2>
+
+      <!-- Admin section -->
+      <div id="admin-section" style="display: none;">
+        <h3>Add Delivery</h3>
+        <select id="studentEmailSelect">
+          <option value="">Select Student</option>
+        </select>
+        <input type="text" id="itemName" placeholder="Item Name" required />
+        <input type="date" id="deliveryDate" required />
+        <button onclick="addDelivery()">Add Delivery</button>
+      </div>
+
+      <h3>Deliveries</h3>
+      <ul id="delivery-list"></ul>
+
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
+
+
+
